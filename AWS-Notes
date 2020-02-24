@@ -26,6 +26,33 @@ NEW USERS are assigned Access Key ID and Secret Access Keys when first created.
 The Access Key ID and Secret Access Keys are not Id and Password. We can access AWS via the API and command line.
 ALWAYS SETUP MULTIFACTOR AUTHENTICATION for your root account.(Google Authenticator App)
 
+
+
+
+
+S3 (Simple Storage Service)
+-S3 provides developers with Secure, durable and highly scalable object storage.
+-Simple webservice interface to store and retrive any amount of data from anywhere on the web.
+-safe place to store your files. It is object based storage.
+-Files can range from 0-5tb
+-Files are stored in buckets.Kind of folders.
+-S3 follows a universal Namespace. The names must be unique globally. This is because it creates a webaddress on its name.
+-Once we upload a file on S3. We will receive a HTTP200 code in our browser saying the upload is successful.
+
+
+S3 Object consists of the following:
+1. Key: Its the name of the object or the file
+2. Value: This is the data and is made up of sequence of bytes
+3. Version ID: It is used for versioning to have version control.
+4. Metadata: Its the data about the data we are storing(Finance, payroll data etc.)
+5. Access control and torrents
+
+How does data consistency work for S3?
+-S3 has Read after Write consistency for PUTS of new objects. This means if a new file is placed in S3. We can immediately read the file once its posted.
+-S3 has eventual consistency for all overwrites, updates and deletes of the existing S3 PUTS objects.
+(This means once we do an update to an existing S3 object, It will immediately show both the objects but eventually will get the most updated one)
+
+
 Hands On:
 1. First always to Enable Multi Factor Authentication. Install Google Authenticator in the phone, scan the barcode and enter the MFA code 2 times(after first one expires). 
 2. Need to add user in the IAM role. This can be customized to provide programatic access or use a custom password.
