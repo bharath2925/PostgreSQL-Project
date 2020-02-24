@@ -26,6 +26,19 @@ NEW USERS are assigned Access Key ID and Secret Access Keys when first created.
 The Access Key ID and Secret Access Keys are not Id and Password. We can access AWS via the API and command line.
 ALWAYS SETUP MULTIFACTOR AUTHENTICATION for your root account.(Google Authenticator App)
 
+Hands On:
+1. First always to Enable Multi Factor Authentication. Install Google Authenticator in the phone, scan the barcode and enter the MFA code 2 times(after first one expires). 
+2. Need to add user in the IAM role. This can be customized to provide programatic access or use a custom password.
+Once the custom password is created, We can download the credentials.csv file which would have all the credentials needed for your IAM Role.
+3. Next we need to provide permissions. We can start by creating a Group. Upon providing a name to the group we can see we can add policies to the group.
+Few policies are AWS managed Policies which covers almost all the access policies based on the role.
+4. Once the policies are added to the group. The user is already added to the group. So the user will have all the access mentioned in the policies for that group.
+5. Lastly we need to setup IAM Password Policy. This includes the length of password, Frequency to change the password etc.
+
+Major point to remmember is never to share the access key id and secret access key with anyone. This would give access to the complete AWS console using these credentials.
+
+Finally we need to assign roles. This givess access to a AWS service to access another AWS service. We can go to role, Add role, Select the service for which you want access.
+For ex EC2, and provide a policy for this role(Here We can give S3FullAccess(AWS Managed policy) to give the EC2 complete access to the S3 bucket)
 
 
 
@@ -53,16 +66,40 @@ How does data consistency work for S3?
 (This means once we do an update to an existing S3 object, It will immediately show both the objects but eventually will get the most updated one)
 
 
-Hands On:
-1. First always to Enable Multi Factor Authentication. Install Google Authenticator in the phone, scan the barcode and enter the MFA code 2 times(after first one expires). 
-2. Need to add user in the IAM role. This can be customized to provide programatic access or use a custom password.
-Once the custom password is created, We can download the credentials.csv file which would have all the credentials needed for your IAM Role.
-3. Next we need to provide permissions. We can start by creating a Group. Upon providing a name to the group we can see we can add policies to the group.
-Few policies are AWS managed Policies which covers almost all the access policies based on the role.
-4. Once the policies are added to the group. The user is already added to the group. So the user will have all the access mentioned in the policies for that group.
-5. Lastly we need to setup IAM Password Policy. This includes the length of password, Frequency to change the password etc.
+S3 Features:
+1. Tiered Storage Options
+2. Lifecycle Management(Options to push data after certain timeline to another storage)
+3. Versioning
+4. Encryption
+5. MFA Delete (Use Multifactor Authentication to delete)
+6. Secure data using Access Control Lists and Bucket policies.
 
-Major point to remmember is never to share the access key id and secret access key with anyone. This would give access to the complete AWS console using these credentials.
+Types of S3 Storage Classes:(Need to remmember this for your exam)
+1.S3 STANDARD:
+-99.99% Availibility
+-99.99999999999% Durability
+-Designed to sustain loss of 2 facilities concurrently.
 
-Finally we need to assign roles. This givess access to a AWS service to access another AWS service. We can go to role, Add role, Select the service for which you want access.
-For ex EC2, and provide a policy for this role(Here We can give S3FullAccess(AWS Managed policy) to give the EC2 complete access to the S3 bucket)
+2.S3-IA(Infrequently Accessed):
+-For data that is accessed less frequently
+-Provides Rapid access when needed.
+-Lower fee than S3 but you are charged a retrival fee.
+
+3. S3 One Zone-IA:
+-Low cost option for IA data.
+- Stored in one Availibility zone.
+
+4. S3- Intelligent Tiering
+-Uses ML to optimize costs by automatically moving data to the most cost effective access tier without performance impact or operational overhead.
+
+5. S3 Glacier:
+-Used for secure, durable and low cost storage class for data archiving.
+-costs are cheaper than on premises solutions.
+-Retrieval times are configurable from minutes to hours.
+
+6. S3 Glacier Deep Archive:
+-S3 lowest cost storage class
+-Retreival Time of 12 hours is acceptable.
+
+
+
