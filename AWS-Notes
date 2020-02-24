@@ -1,0 +1,25 @@
+AWS Solutions Architect Certification Notes:
+
+-IAM(Identity Aceess Management):
+Allows you to manage users and their level of access to the AWS console.
+
+1. Centralised control of aws acc
+2. shared access 
+3. Granular Permissions
+4.Identity Federation(Allows users to access the AWS using theirLinkedIn or FB creds)
+5. Multifactor Authentication
+6. Provides Temporary Access
+7. Own Password Rotation Policy
+8. Supports PCI DSS Compliance(All Personal Data is secured)
+
+
+Key Terms in IAM:
+1. Users: End users such as people, employees etc
+2. Groups: A collection of Users. Each user in the group will have specific permissions assigned to that group
+3. Policies: Made up of docs. Formatted in JSON.Gives permissions on what the user/group is able to do
+4. Roles: Create roles for each user which provides access for each stack in AWS. For ex we can request role access to a EC2 console to write files in the S3 bucket.
+
+Root Account: The credentials you used to login in the first time. This creds will have god mode access
+
+Hands On:
+1. First always to Enable Multi Factor Authentication
