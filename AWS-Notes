@@ -103,3 +103,11 @@ Types of S3 Storage Classes:(Need to remmember this for your exam)
 
 
 
+S3 charges:
+-Based on Storage
+-Requests
+-Storage Management Pricing(Different Tiers)
+-Data Transfer Pricing
+-Transfer Acceleration: enables fast,easy and secure transfer of files over long distances. 
+-Cross Region Replication:
+
