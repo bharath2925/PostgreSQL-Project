@@ -111,3 +111,96 @@ S3 charges:
 -Transfer Acceleration: enables fast,easy and secure transfer of files over long distances. 
 -Cross Region Replication:
 
+
+
+
+Creating S3 Bucket Steps:
+1. Create S3 will be in global region.
+2. The name is also unique globally
+3. While creating the bucket the default settings is to block all public access. If we place a file in a bucket. A URL is created to access
+ the file. But upon clicking, The file does not open and pops an xml webpage with access denied.
+4. To make a file public. We first need to make the bucket to give public access. By changing this settings, The existing files within 
+the bucked do not become public. To make them public, We need to select the file inside the s3 and in actions select make public. Thats when
+we can see the file.
+5. After uploading a file, We get a HTTP200 code
+6. Control Policies to your bucket using bucket (Access Control Lists)ACL or bucket policies.
+
+Bucket Policies: Its the config for each bucket.
+ACL: Its for individual objects
+S3 can be configures to create access logs which log all requests made to s3 bucket. This can be sent to another bucket to the same acc or
+different acc.
+
+ENCRPYTION is used when we transfer files to s3.(https). It is achieved by SSL/TLS.
+
+Encryption can be usually done on the service side(where aws encrypts the file in bucket) or 
+client side(where we encrypt the file and upload to s3).
+
+Different ways with which we can encrypt on service side are:
+1. S3 Managed Keys (Service Side Encryption)SSE-S3 (AWS manages the keys)
+2. AWS Key Management Service, Managed Keys - SSE-KMS (AWS and client manages keys)
+3. Server Side Encryption with Customer Keys - SSE-C (Customer encrypts the file in AWS)
+
+
+S3 Versioning:
+-Stores all versions of an object(Even edits and deletes)
+-Handy Backup Tool
+-Once enabled, Versioning cannot be disabled. It can only be suspended.
+-It integrates with lifecycle rules
+-Versioning can be enabled with MFA delete.
+
+
+For an existing file in S3. If we download and do changes. Then upload the same file into s3. The permissions for the uploaded file will be
+blocked to public access by default. Even if the s3 bucket has enabled public access.
+*** If versioning is enabled in a S3. It means the space utilization is going to increase for each version. This is important from an 
+architectural point of view.***
+
+-After hiding version. If we delete an object in s3. We can see that after enabling version in view, The most recent file just has a 
+delete tag on it. To delete the file. 
+-we need to go to actions and then delete. 
+-This way the delete request gets deleted and the version of the file which we wanted to delete will be the most recent version of that file.
+-Think of it like delete does not delete the file but creates a new version of that file with a mark as delete tag.
+-If we again delete the latest version of the file. Then it goes back to the previous version of the same file.That becomes the latest
+version.
+
+Life Cycle Management: It helps automating moving objects to different storage tiers.
+-We can create Life Cycle management rules for our s3 bucket. 
+- WE can mention the rules specific for current version and previous versions.
+-For ex: we can say to push all objects in current bucket to another S3-IA bucket after 30 days. and move the same object to Glacier after
+60 days
+
+Cross Region Replication:
+-To enable this, We need to enable versioning.
+-The replication needs to be in another region.
+-WE can change the storage class for the replicated s3
+-We can change the ownership to the destination s3 bucket account
+-Once these are selected, WE need to provide a IAM role for this process. We can create one if needed.
+
+Once cross region replication is enabled, It does not immediately copy all the files to the new bucket.
+But, when we start making changes to the objects in the 1st bucket, The current version of the object is uploaded to the CRR buckt as well.
+-If we try to delete the current version of the object in the first bucket, This will not delete in the CRR bucket. 
+
+Transfer Accleration:
+-This is an additional option to transfer files to s3. Transfering Files using Transfer Accleration will let the customer upload the file
+to the edge location and the edge location uploads the file to the s3. There is a website with amazon which helps you to test the transfer accleration
+speeds with normal s3 to s3 and using transfer accleration methods. 
+
+AWS CloudFront:
+It is a Content Delivery Network(CDN), which is a system of distributed servers that deliver webpages and other web content to users based on 
+geographical location of the user.
+
+Terms used:
+-Edge Location:We know it
+-Origin: The origin of files where the CDN will distribute. This can be an s3 bucket, EC2 instance elastic load balancer or route 53.
+-Distribution: Name given to CDN which consists of all edge locations.
+
+When a customer requests a file from origin. The distribution downloads the file from origin to edge location. This can be configured to
+store the file in the edge location.
+There are 2 types of CloudFront:
+1. Web Distribution- Used for websites.
+2. RTMP: Used for adobe and media streaming.
+
+
+
+
+
+
