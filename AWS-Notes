@@ -199,7 +199,9 @@ There are 2 types of CloudFront:
 1. Web Distribution- Used for websites.
 2. RTMP: Used for adobe and media streaming.
 
-
+**Edge locations are not just READ only, We can write on them too
+**Objects are cached for the life of TTL(Time to Live).
+**We can invalidate cached objects. We will be charged for this service
 
 
 
