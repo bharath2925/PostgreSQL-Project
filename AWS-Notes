@@ -217,3 +217,33 @@ Service which can import to s3 and export from s3.
 
 -AWS SNOWMOBILE is an exabyte-scale data transfer service. Can transfer upto 100PB per snowmobile.
 
+
+------AWS STORAGE GATEWAY------
+Its a service that lets us connect existing on premise software applications with cloud based storage to provide secure integration
+between on premise IT with AWS storage.
+Three types of Storage Gateways:
+1. File Gateway: Its used to store files in s3. can be configured with NFS(Network File System) and SMB(Server Message Block)
+2. Volume Gateway: Its used to store the copies of HD or Virtual HD in s3. This can be configured for STORED VOLUMES or CACHED Volumes.
+3. Tape Gateway: This is a virtual Tape Library(VTL)
+
+
+1.File Gateway:
+-The files are stored in s3 and are accessed through NFS
+-Ownership, Permissions and timestamps are durably stored in s3 in the user-metadata of the object associated with the file.
+-Once the objects are transfered to s3, They can be managed as native s3 objects.
+- bucket policies apply directly to the objects stored in the bucket.
+APPLICATION SERVER -> STORAGE GATEWAY -> DIRECT CONNECT/INTERNET/AMAZON VPC -> S3
+
+2. Volume Gateway:
+-Presents your application with disk volumes using the iSCSI block protocol.
+-Snapshots can be created to backup and it captures onlt the changed blocks.
+-All snapshot storage is compressed to minimize your storage charges.
+  a.Stored Volumes: They store the entire dataset in the client location. Using a iSCSI connectivity, We push all the snapshots to the 
+  aws s3.
+  b. Cached Volumes: It stores only the actively/recently used data.It stores data that you write to these volumns in S3 and retains recently 
+  read data in your on-premisis storage gateway's cache and upload buffer storage.
+  
+3. Tape Gateway: We can store the existing virtual tape cartridges that you create on your tape gateway.
+
+
+
