@@ -247,3 +247,21 @@ APPLICATION SERVER -> STORAGE GATEWAY -> DIRECT CONNECT/INTERNET/AMAZON VPC -> S
 
 
 
+-----Athena vs Macie------
+
+Athena: Interactive Query Service which enables you to analyse and query data located in s3 using standard SQL.
+-serverless, pay per query, per TB scanned.
+- No need to setup complex ETL
+- Works directly with data stored in s3.
+
+Where it can be used:
+- commonly used to query log files
+- Generate business reports on data in s3.
+- Analyse AWS cost and usage reports.
+- Run queries on click stream data.
+
+Macie: Security service that uses ML and MLP to discover, classify PII in s3.
+- can be used to analyse cloudtrail logs for suspicious api activity
+- includes dashboards, reports and alerting.
+- Great for PCI-DSS(Payment Card Industry Data Security Standard) and preventing ID Theft.
+
