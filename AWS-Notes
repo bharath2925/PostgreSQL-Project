@@ -204,5 +204,16 @@ There are 2 types of CloudFront:
 **We can invalidate cached objects. We will be charged for this service
 
 
+***AWS SNOWBALL***
+Service which can import to s3 and export from s3.
+- SNOWBALL is a petabyte-scale data transport solution that uses secure appliances to transfer large amounts of data in and out of AWS.
+- Simple, Fast, Secure and can cost as less as 1/5th of the cost of high speed internet.
+- It comes in 50TB or 80TB. 
+- Uses Multiple layers of security including tampler-resistant enclosures, 256-bit encryption and an industry standart Trusted Platform Module(TPM)
+- Once data transfer is done and verified, AWS performs a software erasure of the snowball appliance.
 
+- AWS SNOWBALL EDGE comes with 100tb of data. It comes with Storage and compute capabilities. 
+- For ex: we can create Snowball Edge to not just store data but also to perform few operations or lambda functions in it.
+
+-AWS SNOWMOBILE is an exabyte-scale data transfer service. Can transfer upto 100PB per snowmobile.
 
