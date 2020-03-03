@@ -1,4 +1,5 @@
 ---------EC2----------
+- EC2 is a web service that provides resizable compute capacity in cloud.
 It provides resizable compute capacity in cloud.
 EC2 reduces the time required to obtain and boot new server instance to minutes
 Can change properties based on your computing requirements change.
@@ -6,7 +7,7 @@ Can change properties based on your computing requirements change.
 Pay as you go
 Pay less as you use more.
 
-EC2 Pricing Models:
+EC2 Pricing Models:(Remmember everything)
 - On Demand: Pay a fixed rate by the hour with no commitment.
   -Useful for:
   1. Users who want low cost and flexibility of EC2 without any up-front payment or long term commitment.
@@ -27,9 +28,27 @@ EC2 Pricing Models:
   1. Apps with flexible start and end times.
   2. Apps that are feasible at very low compute prices.
   3. Users with urgent computing needs for large amounts of additional capacity
-- Dedicated Hosts: Physical EC2 servers 
+- Dedicated Hosts: Physical EC2 servers in your work space.
   - Useful For:
   1. For users having regulatory requirements that may not support multi-tenant virtualization
   2. Great for licensing which does not support multi tenancy or cloud deployments.
   3. Can be purchased on-Demand(Hourly).
   4. Can be purchased as reservation for upto 70% off the on demand price.
+
+***Read all the Instance Types using the Mnemonic provided*** They wont ask it in the associate exam though***
+
+***If the Spot Instance is terminated by Amazon EC2, You will not be charged for partial hour of usage.
+If you terminate, You will be charged for any hour in which the instance ran***
+
+
+-------EC2 Lab----------
+1. Go to EC2 console.
+2. Create Instance
+3. Select the instance you need and select configure instance details.
+4. AFter configuring instance details, Select storage options. Remmember, For root, the Volume type can be only SSD or Magnetic.
+When we add new volume, We can see additional volume types.
+
+***
+
+
+
