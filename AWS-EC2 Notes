@@ -1,0 +1,35 @@
+---------EC2----------
+It provides resizable compute capacity in cloud.
+EC2 reduces the time required to obtain and boot new server instance to minutes
+Can change properties based on your computing requirements change.
+
+Pay as you go
+Pay less as you use more.
+
+EC2 Pricing Models:
+- On Demand: Pay a fixed rate by the hour with no commitment.
+  -Useful for:
+  1. Users who want low cost and flexibility of EC2 without any up-front payment or long term commitment.
+  2. Apps with short term, spiky or unpredictible workloads that cannot be interrupted.
+  3. Apps developed or tested in EC2 for the first time.
+- Reserved: Provides you with a capacity reservation and significant discount on hourly charge for an instance. Contract can be 1 year or 3 years
+  -Useful for:
+  1. Apps with steady state or predictible usage.
+  2. Apps that require reserved capacity
+  3. Users able to make upfront payment to reduce their computing costs even further.
+  
+  Types:
+  1. Standard Reserve Instance: 75% off on demand instances. Cant convert one instance to another.
+  2. Convertible Reserved Instances: Upto 54% off on demand capability to change the attributes of Reserved Instance. Can convert to another instance when required.
+  3. Scheduled Reserved Instance: Can launch within the time window you reserve.
+- Spot Instance: We can bid whatever price you want for your instance. we get the server if we win the bid else we will loose it in 2 minutes.
+  -Useful for:
+  1. Apps with flexible start and end times.
+  2. Apps that are feasible at very low compute prices.
+  3. Users with urgent computing needs for large amounts of additional capacity
+- Dedicated Hosts: Physical EC2 servers 
+  - Useful For:
+  1. For users having regulatory requirements that may not support multi-tenant virtualization
+  2. Great for licensing which does not support multi tenancy or cloud deployments.
+  3. Can be purchased on-Demand(Hourly).
+  4. Can be purchased as reservation for upto 70% off the on demand price.
