@@ -51,38 +51,13 @@ When we add new volume, We can see additional volume types.
 ***
 
 
-------AWS EBS--------
-Provides persistent block storage volumes for use with Amazon EC2 instance in the AWS cloud.
-Each EBS volume is automatically replicated within its AZ to protect you from Component failure, offering high avail and durab
-
-Comes in 5 flavors:
-1. General Purpose SSD: Balances price and performance for a wide variety of transactional workloads>
-  -Usecases: Most Work Loads
-  -API Name: gp2
-  -Volume Size: 1GB-16TB
-  -IOPS: 16000
-2. Provisioned IOPS(SSD): Highest performance SSD volume designed for mission critical apps
-  -Usecases: Databases
-  -API Name: io1
-  -Volume Size: 4GB-16TB
-  -IOPS: 64,000
-3. Throughput Optimized HDD: Low cost HDD designed for frequently accessed throughput intensive workloads.
-  -Usecases: Big Data and Data Warehouses
-  -API Name: st1
-  -Volume Size: 500GB-16TB
-  -IOPS: 500
-4. Cold HDD: Lowest cost HDD vol designed for less frequently accessed workloads
-  -Use Cases: File Servers
-  -API Name: sc1
-  -Volume Size: 500GB-16TB
-  -IOPS: 250
-5. EBS Magnetic: Previous Generation HDD
-  -Usecases: Workloads where data is infrequently accessed
-  -API Name: Standard
-  -Vol Size: 1GB-1TB
-  -IOPS: 40-200
-  
------EBS volumes and Snapshots-----
---Whereever our EC2 instance is, The volume will always be in the same AZ.
+--SEcurity Groups---
+***Every time you make a change in the inbound rule or any other changes, The changes are effective immediately.***
+-If you create a inbound rule for any type of request, AWS will automatically create an outbound rule for the same request. This functionality
+is called as statefull
+-We can block specific requests type to the SG. and we cannot block a specific IP address in SG
+-When we create a security group. It automatically blocks all inbound traffic. We have to add inbound rules to allow the specific requests.
+-All outbound traffic is allowed.
+-We can add more than 1 sg to an EC2 Instance. This can be done by Actions->Change SG->select the SG you want
 
 
