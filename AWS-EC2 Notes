@@ -120,7 +120,42 @@ template store in S3.
 *By default, both root volumes will be deleted on termination, however we can stop this on EBS but not in instance type
 
 
-
+----ENI vs ENA vs EFA---------
+1. ENI(Elastice Network Interface): Essentially a virtual network card present in your EC2 instance.
+  It allows:
+  1.A primary ipv4 from your VPC range.
+  2.one or more secondary ipv4 from the ipv4 address range on your vpc.
+  3.one elastic ipv4 per private ipv4
+  4. one public ipv4
+  5. one or more ipv6
+  6. one or more security group.
+  7. a mac address
+  8. source/destination check flag
+  9. description
+  
+  Scenarios for ENI:
+  -Used for Basic Computing
+  -If you need separate management network for your production or a separate logging network at low cost. Use ENI
+  -To create a management network
+  -Use network and security appliances in your vpc
+  -create dual homed instances with workloads/roles on distinct subnets.
+  -Create a low budge high availability solution.
+2. EN(Enhanced Networking): Uses SR-IOV(Single Root I/O Virtualization) to provide high performance networking capabilities on supported 
+  instance types.
+ -Some times ENI's are not capable of network throughput you need to do more intense workloads, Thats where we can use Enhanced Networking
+ -SR-IOV is a method of device virtualization that provide higher I/O performance using less CPU utilization compared to traditional VNI
+ -EN provides higher bandwidth, HigherPSS(Packet per sec) Performance and consistently lower inter-instance latencies.
+ -There is no additional charge for using EN.
+ -Use it where you want good network performance.
+ ENI can be enabled by:
+  1.ENA(Elastic Network Adapter): Which supports network speeds upto 100GBps for supported instance types.
+  2.Inter 82599 Virtual Function(VF): Which supports network speeds upto 10GBps for supported instance types.This is typically used in older
+    instances.
+   **In any scenario We should choose ENA over VF**
+3.EFA(Elastic Fabric Adapter): A network device that you can attach to your EC2 to acclerate High performance Computing(HPC) and ML Apps.
+  -EFA provides lower and more consistant latency and higher throughput than the TCP transport traditionally used in cloud-based HPC systems.
+  -EFA can use OS-Bypass. OS-Bypass enables HPC systems and ML apps to bypass the OS kernel and to communicate directly with the EFA device.
+  This makes it lot faster with low latency.Not supported in Windows. Only in Linux
 
 
 
