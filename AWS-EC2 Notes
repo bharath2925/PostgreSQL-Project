@@ -94,3 +94,45 @@ Comes in 5 flavors:
 
 -----EBS volumes and Snapshots-----
 --Whereever our EC2 instance is, The volume will always be in the same AZ.
+
+
+-----AMI Types----
+AMI can be selected based on:
+1. Region
+2. OS
+3. Architecture(32/64)
+4. Launch Permissions
+5. Storage for the root device
+
+
+There are 2 types of AMI's:
+1. Instance Store(Ephemeral Storage)
+2. EBS Backed Volumes
+
+-All AMI's are categorized as either Backed by Amazon EBS or Backed by Instance Store
+For EBS Volumes: The root device for an instance launced from the AMI is an Amazon EBS volume created from an Amazon EBS snapshot.
+For Instance Store Volumes: The root device from an instance launched from the AMI is an instance store volume created from a 
+template store in S3.
+
+*Instance store volumes cannot be stopped, If the underlying host failes, you will start loosing data.*
+*EBS backed instances can be stopped, you will not loose data on this instance if stopped.*
+*You can reboot both, You will not loose data*
+*By default, both root volumes will be deleted on termination, however we can stop this on EBS but not in instance type
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
