@@ -205,7 +205,23 @@ Things to do in Cloudwatch:
 4. Logs: CW Logs helps you to aggregate, monitor and store logs.
 
 
+-----AWS Command Line-----
+Once we create a EC2 instance, We can enter the CLI through connect. 
+Once we are in the CLI. WE  can go to root access using sudo su
+Here we can get into the AWS CLI by using:
+aws service_name linux function. For ex:
+to list all s3 buckets: aws s3 ls
 
+We need to configure the CLI to access all the AWS resources present in it.This can be done by:
+1. typing aws configure
+2. Provide the ACCess Key ID and AWS secret access key. This is provided in IAM. When we create an User, We can download an accesskey.csv
+This would have all the above details.
+3. The region needs to be mentioned as us-east-1
+4. By providing all these info, We are saying the CLI that we are trying to access the CLI of this EC2 using the User access created in 
+IAM. 
+
+By following the above steps, We can access all the AWS resources present. 
+-CLI is global. This can be accessed even from other region.
 
 
 
