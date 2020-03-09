@@ -173,8 +173,28 @@ template store in S3.
   **The unencrypted snapshots can be shared with other AWS accounts or made public**
   
 -----CloudWatch------
+-Amazon Cloudwatch is a monitoring service to monitor your AWS resources, as well as the app that you run on AWS.
+-CW monitors performance. It can monitor things like:
+  1.Compute:
+    -EC2:Monitors events every 5 minutes by default.
+      -Host level metrics consist of:
+        1.CPU
+        2.Network
+        3.Disk
+        4.Status Check
+    -Autoscaling Groups
+    -Elastic Load Balancers
+    -Route53 Health Checks
+  2.Storage and Content Delivery:
+    -EBS Volumes
+    -Storage Gateways
+    -CloudFront
+    
+-AWS CloudTrail: Increases visibility into your user and resource activity by recording AWS management console actions and API calls.
+  you can identify which users and acc called AWS, the source IP address from which the calls were made and when the calls occurred.
 
-
+****CloudWatch monitors Performance****
+****Cloudtrail monitors API calls in the AWS platform****
 
 
 
