@@ -195,8 +195,14 @@ template store in S3.
 
 ****CloudWatch monitors Performance****
 ****Cloudtrail monitors API calls in the AWS platform****
-
-
+****Cloudwatch is all about performance. Cloudtrail is all about auditing****
+*Standart Monitoring = 5 mins default
+*Detailed Monitoring =  1min default
+Things to do in Cloudwatch:
+1. Dashboards: Create awesome dashboards to see what's happening.
+2.Alarms: Can set alarms which will notify when particular thresholds are hit.
+3. Events: CW Events helps to respond to state changes in your AWS resources.
+4. Logs: CW Logs helps you to aggregate, monitor and store logs.
 
 
 
