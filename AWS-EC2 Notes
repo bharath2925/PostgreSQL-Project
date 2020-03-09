@@ -158,7 +158,21 @@ template store in S3.
   This makes it lot faster with low latency.Not supported in Windows. Only in Linux
 
 
+-----Encrypted Root Device Volumes and Snapshots------
+-RDV is the HD that has the OS. Here its the EBS volume. Initially we cannot encrypt the root device.
+-New feature of EBS allows you to encrpyt your root volume while initiating the instance. This is avaiable in the option of add storage.
 
+-To encrypt a root device for a launced EC2 instance:
+  1. From the volumes, Select the root volume of your instance and create a snapshot of this storage.
+  2. Once the snapshot is created, We copy the snapshot. Here we have an option to encrypt this root device. We need to provide keys for it.
+  3. Once the snapshot is created, We then create an AMI with this snapshot. Once the snapshot is created, We can use this AMI to launch
+  Encrypted EC2 instances.
+  **We cannot create an non encrypted EC2 instance using an Encrypted snapshot/AMI.**
+  **Snapshots of encrypted volumes are encrypted automatically**
+  **You can share snapshots, but only if they are unencrypted**
+  **The unencrypted snapshots can be shared with other AWS accounts or made public**
+  
+-----CloudWatch------
 
 
 
