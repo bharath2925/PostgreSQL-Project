@@ -230,8 +230,29 @@ Remmember, Bucket names are global.
 --We can go to root dir. cd ~ we can see a hidden folder named aws. it can be accessed by cd .aws
 Here we will have the credentials which we stored. by doing nano credentials, we can see all the access key and access hidden keys we 
 provided earlier.
--As this would be a security issue, Amazon always suggests to use a role based access.
+-As this would be a security issue, Amazon always suggests to use a role based access using IAM.
 ***Commands wont be asked in the exam***
 ***many documentations are available to get the aws commands***
+
+------IAM Roles--------
+-Roles are not just used from EC2 but for every resource in AWS.
+-Roles are more secure than storing your access key in individual EC2
+-Roles are easier to manage if we have 100+ EC2
+-Roles can be assigned to an EC2 after its created using both CLI and console.
+-Roles are universal, You can use then in any region.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
