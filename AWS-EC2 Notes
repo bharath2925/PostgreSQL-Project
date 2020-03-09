@@ -206,6 +206,7 @@ Things to do in Cloudwatch:
 
 
 -----AWS Command Line-----
+a CLI to interact with AWS from anywhere in the world
 Once we create a EC2 instance, We can enter the CLI through connect. 
 Once we are in the CLI. WE  can go to root access using sudo su
 Here we can get into the AWS CLI by using:
@@ -222,8 +223,15 @@ IAM.
 
 By following the above steps, We can access all the AWS resources present. 
 -CLI is global. This can be accessed even from other region.
+-To create a new s3 bucket we can type:
+aws s3 mb s3://bucket_name
+Remmember, Bucket names are global.
 
-
-
+--We can go to root dir. cd ~ we can see a hidden folder named aws. it can be accessed by cd .aws
+Here we will have the credentials which we stored. by doing nano credentials, we can see all the access key and access hidden keys we 
+provided earlier.
+-As this would be a security issue, Amazon always suggests to use a role based access.
+***Commands wont be asked in the exam***
+***many documentations are available to get the aws commands***
 
 
