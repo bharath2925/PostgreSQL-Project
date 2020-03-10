@@ -257,8 +257,14 @@ echo "<html><h1>Hello World</h1></html>" >index.html
 aws s3 mb s3://bharath2925acl
 aws s3 cp index.html s3://bharath2925acl
 
-
-
+------Instance Metadata-------
+-We can check the bootstrap scripts which we gave while creating the ec2 instance(above steps) using this command in cli:
+curl http://169.254.169.254/latest/user-data
+The ip above is common for all bootstrap scripts
+-To get all the meta-data used for this instance we can query, curl http://169.254.169.254/latest/meta-data
+Here we will get a list of all options which we can view.
+--Metadata is used get info about the instance
+--user-data will contain the bootstrap scripts which we executed while creating the ec2.
 
 
 
