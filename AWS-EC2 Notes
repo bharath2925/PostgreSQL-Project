@@ -242,6 +242,20 @@ provided earlier.
 -Roles are universal, You can use then in any region.
 
 
+------BootStrap Scripts--------
+-Bootstrap scripts are aws cli scripts which can be configured while creating a new ec2.
+-Here we can add all the awsl cli scripts which we would need to execute once a new instance is created.
+-Sample tasks can be to update all the aws libraries, install apache to make it a webserver etc.
+-sample command below:
+#!/bin/bash
+yum update -y
+yum install httpd -y
+service httpd start
+chkconfig httpd on
+cd /var/www/html
+echo "<html><h1>Hello World</h1></html>" >index.html
+aws s3 mb s3://bharath2925acl
+aws s3 cp index.html s3://bharath2925acl
 
 
 
