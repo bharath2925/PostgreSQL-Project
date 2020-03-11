@@ -289,9 +289,31 @@ Once this is done, We can see that if we log into another ec2 using the same sg.
 **We have read after write consistency while writing in NFS.
 
 
+-----Amazon FSx for Windows & Amazon FSx for Lustre--------
+Amazon FSx windows File server:It provides a fully managed native Microsoft Windows file system so you can easily move your 
+windows-based app that require storage to AWS.Amazon FSx is built on Windows Server.
+-Its designed to work with Microsoft applications
 
+-How FSx is different from EFS:
+1.FSx is a managed Windows Server that runs Windows Server Message Block(SMB)-based file services. EFS is NAS filer for EC2
+2.Designed for Windows and Windows apps.
+3.Supports Active Directory(AD) users, access control lists, groups and security policies along with Distributed File system(DFS)
+namespaces and replication.
+***Amazon do not support EC2 that are running windows to connect EFS. Its linux only***
 
+Amazon FSx for Lustre: Its a fully managed file system that is optimized for compute-intensive workloads, such as high-performance
+computing(HPC),ML,Media data processing workflows and electronic design automation(EDA).
 
+With FSx, you can launch and run a lustre file system that can process massive datasets at upto 100 GBps of throughput, Millions of IOPS
+and sub millisecond latencies.
+
+Exam Tips:
+->We use EFS: when you need distributed, highly resilient storage for linux instances and linux based apps
+->We use Amazon FSx for Windows: When you need centralised storage for windows based apps such as sharepoint, sql server, workspaces,
+IIS, webserver or any other native microsoft apps.
+->Amazon FSx for Lustre: When you need high-speed, high-capacity distributed storage. This will be for apps that do HPC, financial 
+modelling etc.
+FSx for Lustre can directly store data in S3.
 
 
 
