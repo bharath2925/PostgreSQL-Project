@@ -266,8 +266,27 @@ Here we will get a list of all options which we can view.
 --Metadata is used get info about the instance
 --user-data will contain the bootstrap scripts which we executed while creating the ec2.
 
+--------EFS------------
+EFS(Elastic File System):It is a file storage service for Amazon EC2. EFS is easy to use and provides a simple interface 
+that allows you to create and configure file systems quickly and easily. With EFS, storage capacity is elastic, growing and shrinking
+automatically as you add and remove files, so your app have the storage they need,when they need it.
+-The advantage of EFS over EBS is that EBS cannot be shared across multiple ec2. But EFS can be shared.
+-EFS is available under storage. We first need to create an EFS.
+-Lifecycle policies are available in EFS where we can push the inaccessed files to EFA IA(Infrequent Access) storage class. which 
+is cheaper
+-While creating EFS, We can create the EFS under default SG and if we have EC2 instances using another SG. We can go to the default SG
+and add inbound rule to allow NFS(Network File System) to allow from the default SG. In the source section while adding a inbound rule,
+We can type sg to select our SG which is used in our EC2.
+-Once we create the EFS. We log into existing ec2 cli. enter the following command: mount -t efs -o tls fs-e2365f62:/ /var/www/html
+This would mount our efs with name(fs-e2365f62) to the /var/www/html location. This needs to be done on both the ec2 instances.
+Once this is done, We can see that if we log into another ec2 using the same sg. We can see all the updates made from EC2-1 here in EC2-2.
 
-
+***EFS supports NFS version 4(NFSv4)protocol.
+**Only pay for the storage you use. No pre-provisioning reqd.
+**Can scale upto petabytes
+**Can support 1000 of concurrent NFS connections
+**Data is stored across multiple AZ within a region.
+**We have read after write consistency while writing in NFS.
 
 
 
