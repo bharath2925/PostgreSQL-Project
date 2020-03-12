@@ -316,4 +316,34 @@ modelling etc.
 FSx for Lustre can directly store data in S3.
 
 
+-------EC2 Placement Groups-------
+Its a way of placing your EC2 instances
+
+There are 3 types of PG:
+1. Clustered PG: Grouping of instances within single AZ. Used for apps with low network latency, high network throughput.
+  Only certain instances can be launched in Clustered PG
+2. Spread PG: They are instances placed on distinct underlying hardware. used for apps that have small no of critical instances that should be kept
+  separate from each other. Think it like each EC2 is placed in individual racks. across same of different AZ. 
+  -Ideal for placing Individual Critical EC2
+3. Partitioned PG:EC2 divides each group into logical segments called partitions. EC2 ensures that each partition within a placement group has its own 
+  set of racks. Each rack has its own network and power source.
+  -No 2 partitions within a same PG share the same racks, allowing you to isolate the impact of hardware failure within your app.
+  -*The main difference between Spread PG and partitioned PG is that in Partitioned PG, we can have multiple instances under a single
+  rack. In Spread PG, Single EC2 is placed in single racks without any partitions.
+  -Ideal for Multiple EC2 instances like HDFS,HBase and Cassandra.
+
+***Clustered PG cant spam multiple AZ, Spread and Partitioned group can but still have to be in the same region***
+***The name you specify for a PG must be unique within your AWS account***
+***Only certain types of instances can be launched in PG(Compute Optimized, GPU, Memory Optimized, Storage Optimized)***
+***AWS recommends homogenous instances within clustered PG***
+***You cant merge PG***
+***You can move existing instances into a PG.before you move, the instance must be in stopped state***
+***You can move or remove an instance using AWS CLI or an AWS SDK, You cant do it via the console***
+
+
+
+
+
+
+
 
