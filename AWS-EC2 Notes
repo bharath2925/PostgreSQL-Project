@@ -341,7 +341,28 @@ There are 3 types of PG:
 ***You can move or remove an instance using AWS CLI or an AWS SDK, You cant do it via the console***
 
 
+-------AWS WAF(Web Application Firewall)--------
+-Allows you to monitor HTTP/HTTPS requests that are forwarded to AWS cloudfront, App Load Balancer or API Gateway
+-AWS WAF also lets you control access to your content. Its a layer 7 firewall.
+-You can configure conditions such as what IP are allowed to make requests or what query string parameters need to be passed for the request
+  to be allowed.
+-The application load balancer or CloudFront or API Gateway will either allow this content to be received or give a HTTP 403
 
+At most basic level AWS WAF allows 3 different behaviours:
+  1. Allow all request except the onces you specify.
+  2. Block all requests except the ones you specify.
+  3. Count the requests that match the properties you specify.
+
+WAF Protection: WAF provides extra protection against web attacks using conditions you specify.You can define conditions by using chara-
+  cteristics of web req such as:
+   1.IP addresses that requests originate from.
+   2.Country that requests originate from.
+   3.Values in the request headers.
+   4.Strings that appear in requests, either specific strings or string that match regex patterns.
+   5.Length of requests.
+   6.Presence of SQL code that is likely to be malicious.(SQL Injection)
+   7.Presence of a script that is likely to be malicious(Cross-site scripting).
+***We can also use Network ACL's to block malicious IP address. This is covered in VPC section***
 
 
 
