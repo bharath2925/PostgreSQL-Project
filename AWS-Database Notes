@@ -109,5 +109,33 @@ There are 2 types of backups:
   -Redshift makes it easy to add nodes to your dw and enables you to maintain fast query performance as your dw grows.
 -
     
+-------Aurora-------
+-It is a MySQL and PostgreSQL compatible  rdb engine that combines the speed and avail of high-end commercial db with the simplicity
+  an cost-effectiveness of open source databases.
+-It is 5 times better performance than MySQL and 3 times better performance than PostgreSQL at a much lower price point.
+-It starts with 10GB, scales in 10GB increaments upto 64TB(Storage Autoscaling)
+-Compute resources can scale upto 32 vCPUs and 244 GB of Memory.
+-2 copies of your data is contained in each AZ, with minimum of 3 AZ. Giving you 6 copies of your data
+- Aaurora is designed to transparently handle the loss of up to 2 copies of data without affecting database write 
+  availability and up to three copies without affecting read availibility.
+-It is also self-healing. Data blocks and disks are continously scanned for errors and repaired automatically.
+
+-Three types of Aurora Replicas are available:
+  1.Aurora Replicas(Currently 15)
+  2.MySQL Read Replicas(Currently 5)
+  3.PostgreSQL Read Replicas(Currently 1)
+  
+  Feature                 Amazon Aurora Replicas            MySQL Replicas
+  1.No of Replicas              up to 15                      up to 5
+  2.Replication Type            Async(millisec)                Async(seconds)
+  3.Performance Impact          Low                           HIgh
+  on Primary
+  4.Replica Loc                 In-Region                     Cross-Region
+  5.Act as Failover Target      Yes(No data loss)             Yes(potentially minutes of data loss)
+  6.Automated Failover          Yes                           No
+  7.Support for user-defined    No                            Yes
+    replication delay
+  8.Support for different       No                            Yes
+    data or schema vs primary
     
     
