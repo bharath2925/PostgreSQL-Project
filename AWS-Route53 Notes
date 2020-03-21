@@ -1,0 +1,68 @@
+---DNS---
+-Route53 is the DNS service of AWS. DNS is on the port 53 so this is called as Route53.
+-DNS is like a phonebook. It is used to converty human friendly domain names into an internet protocol(IP) address.
+-IP address are used by computers to identify ea on the network. It commonly comes in 2 forms IPv4 and IPv6.
+-IPv4 addresses are running out. IPv4 is a 32 bit field and has over 4 billion different addresses.
+-Due to more number of devices connected, IPv6 was created with 128 bits of address space having about 340 x10 pow(36) different
+  addresses.
+-Looking at common domain names like google.com,bbc.co.uk etc. you will notice strings separated by dots. 
+-The last work in a domain name is the top level domain. for ex: .co.in here in is top level domain..co is second level domain name.
+-These domain names are controlled by Internet Assigned Numbers Authority(IANA).
+
+-Bcoz all of the names in a given domain name have to be unique there needs to be a way to organize this all so that domain names aren't
+  duplicated.
+-This is where domain registrars come in, A registrar is an authority that can assign domain names directly under one or more top-level
+  domains.
+-These domains are registered with InterNIC(Network Information Center), a service of ICANN(Internet Corporation for Assigned Names and Numbers)
+--ICANN enforces uniqueness of domain names across the internet.
+-Each domain name becomes registered in a central database known as WhoIS database.
+-Popular domain registrars inclues Amazon, GoDaddy.com,123-reg.co.uk etc.
+
+-When you buy a dns. You will be given a Start of Authority Record(SOA). It stores info about:
+  1.Name of server that supplied the data for the zone.
+  2.The admin of the zone.
+  3.The current version of the data file.
+  4.The default number of seconds for the time-to-live file on resource records.
+
+-NS Records: Thet are Name Server Records. They are used by top level domain servers to direct traffic to content DNS server which
+  contains the authoritative DNS records.
+  For ex: If a user tries to query a website. The Top Level Domain is queried first with the url, The TLD will share the 
+  NS of the url. Then the NS Records database is queried to get the SOA. In SOA we will have our DNS records.
+  
+-"A" Record is a fundemental type of DNS record. The "A" in A Record stands for "Address". 
+  The A record is used by computer to translate the name of the domain to an IP address.
+
+-TTL(Time to Live): The length that a DNS record is cached on either the resolving server or the user own local PC is equal
+  to the value of TTL in seconds. The lower the TTL, the fast changes to DNS records take to propagate throughout the internet.
+  -The default TTL is 48 hrs meaning, If i make a change to the DNS it will take 48 hrs for the change to take place across internet.
+  
+  
+-CName: It is a Canonical Name that can be used to resolve one domain name to another.
+  for ex: you may have a mobile website with the domain name m.A.com that is used for when user browse to your domain name on their mobile. 
+   You may also want the name mobile.A.com to resolve to this same address.
+
+-Alias Records: They are used to map resource record sets in your hosted zone to Elastic Load Balancers, CF distributions or
+  s3 buckets that are configured as websites.
+ -Alias records work like CNAME record in that you can map one DNS name to another target DNS name.
+-There is a key difference though, A CNAME cant be used for naked domain names(aka zone apex record).You cant have a CNAME
+  for http://acloud.guru, it must be either an A record or an Alias.
+  
+***ELB don have pre-defined IPv4 add.you resolve to them using a DNS name.
+***Understand the difference between an Alias record and CNAME.
+***Given a choice, always choose an Alias record over CNAME.
+***Common DNS Types:
+  1.SOA Records
+  2.NS Records
+  3.A Records
+  4.CNAMES
+  5.MX Records(Mail Exchanger used for mails)
+  6.PTR Records(reverse of A record used to find the name using IP address)
+  
+  
+  
+  
+  
+  
+  
+  
+  
