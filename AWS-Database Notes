@@ -138,4 +138,39 @@ There are 2 types of backups:
   8.Support for different       No                            Yes
     data or schema vs primary
     
-    
+Backups with Aurora:
+-Automated backups are always enabled on Amazon Aurora DB instances. Backups do not impact db performance.
+-You can take snapshots on aurora, it does not impact performance.
+-you can share aurura snapshots with other aws accounts
+
+-Amazon Aurora Serverless is an on-demand, autoscaling configuration for the MySQL and PostgresQL compatible editions of 
+  Amazon Aurora. 
+-An Aurora serverless DB cluster automatically starts up, shuts down and scales capacity up or down based on your app needs.
+-Aurora serverless provides a relatively simple, cost effective option for infrequent, intermittent, or unpredictable workloads.
+
+
+
+---------Elasticache--------
+It is a webservice that makes it eas to deploy, operate and scale an in-memory cache in the cloud.
+-The service improves the performance of web applications by allowing you to retrive info from fast, managed, in-memory caches,
+  instead of relying entirely on slower disk-based db.
+-Elasticache supports 2 types (memcached and redis)
+
+Requirement                             Memcached   Redis
+1.Simple Cache to offload DB            Yes         Yes
+2.Ability to scale horizontally         Yes         Yes
+3.Multi-threaded performance            Yes         No
+4.Advanced data types                   No          Yes
+5.Ranking/sorting data sets             No          Yes
+6.Pub/Sub capabilities                  No          Yes
+7.Persistence                           No          Yes
+8.Multi-AZ                              No          Yes
+9.Backup &Restore Capabilities          No          Yes
+
+***Use Elasticache to increase db and web app performance***
+
+
+
+
+
+
