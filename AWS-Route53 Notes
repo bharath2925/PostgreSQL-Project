@@ -57,11 +57,67 @@
   4.CNAMES
   5.MX Records(Mail Exchanger used for mails)
   6.PTR Records(reverse of A record used to find the name using IP address)
+
+***You can buy domain names directly with AWS.
+***It can take upto 3 days to register depending on the circumstances.
+
+Health checks can be configured on R53. We can give the path of the function to check. for ex index.html can be checked.
+  We can se health checks on individual record sets.
+  If a record set failes a hc.it will be removed from r53 until it passes the hc.
+  YOu can set SNS notifications to alert you if a health check is failed.
+ We can create hc in the hc section and associate the hc while creating a record set.
   
+---Routing policies on Route53----
+1. Simple Routing: You can have only 1 record with multiple IP. If you specify multiple values in a record, R53 returns all values
+   to the user in a random order.
+   For Ex: If we create a domain in R53 pointing to 3 ip addresses(here ec2), We can configure ttl for the domain where until tha
+   time the local web browser would have cached that ip address. after the ttl the browser can receive another ip from the 3 configured.
+   **Simple Routing Policy means you have only one record in your DNS and it has multiple IP addresses.***
+
+2.Weighted Routing:It allows you to split your traffic based on different weights assigned. For ex: You can set 10% of your traffice
+  to US-east1 and 90% to west1 
   
+3.Latency-based Routing:It allows you to route your traffic based on the lowest network latency for your 
+  end user(ie which region will give them the fastest response time)
+  -To use latency based routing, you create a latency resource record set for the Amazon EC2 or ELB resource in each region that hosts your website.
+  -When R53 receives a request for your site, it selects the laency resource record set for the region that gives the user the lowest latency.
+  -R53 then responds with the value associated with that resource record set.
+
+4.Failover Routing:It is used when you want to create an active/passive set up. Fo ex:you may want your primary site to be in 
+  EU-West-2 and your secondary DR site in AP-Southeast-2. R53 will monitor the health of your primary using hc.
+  -the hc monitors the health of your end points.If there is a failover on primary, R53 will automatically point the domain to the
+  DR site.
+  -We dont need to necessarily create hc for secondary site.
   
-  
-  
+5.Geolocation Routing:It lets you choose where your traffic will be sent based on the geo location of your users(ie the location f
+  from which DNS queries originate).
+ -You might want all queries from Europe to be routed to a fleet of EC2 that are specifically configured for your EU customers.
+ -These servers may have the local language of your EU customers and all prices are displayed in Euros.etc etc
+ -If you want to really track the geo users to specific servers, then use this.
+ ***IF you stop and start an EC2, The IPv4 addresses gets changed.
+ 
+6.Geoproximity Routing(Traffic Flow Only):It lets R53 route traffic to your resources based on geo location of your users and
+  your resources.
+  -You can also optionally choose to route more traffic or less to a give resource be specifying a value, known as bias.
+  -A bias expands or shrinks the size of the geo region from which traffic is routed to a resource.
+  -***To use Geoproximity Routing, You must use Route 53 Traffic Flow***
+  -We first need to create a traffic flow.
+  -Not in solutions architect exam syllabus.
+
+7. Multivalue Answer Policy:
+It lets you configure Amazon R53 to return multiple values, such as IP addresses for your web servers, in response to the DNS queries.
+-You can specify multiple values for almost any record, but multivalue answer reouting also lets you check the health of 
+  each resource so R53 returns only values for healthy resources.
+-This is similar to simple routing however it allows you to put health checks on each record set.
+
+
+
+
+
+
+
+
+
   
   
   
