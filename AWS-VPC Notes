@@ -1,0 +1,51 @@
+--------VPC---------
+What is a VPC?
+- Amazon Virtual Private Cloud lets you provision a logically isolated section of AWS cloud where you can launch AWS resources in a virtual 
+  network you define.
+- You have complete control over your virtual networking environment, including selecting your own IP range, creating of subnets ,configuration
+  of route tables and network gateways.
+- You can easily customize your network config of your vpc. For ex: You can create public facing subnet for your webservers that has access 
+  to the internet and place your backend systens such as databases and app servers in a private facing subnet with no internet access.
+-You can leverage multiple layers of security , including security groups and network access control lists, to help control access to ec2 in each subnet.
+-YOu can also create a Hardware VPC connection between your corporate datacenter and your VPC and leverage the aws cloud as an extension 
+  of your corporate datacenter
+  
+  
+What can we do with VPC?
+- Launch instances into your subnet of your choosing.
+- Assing custom IP address ranges in each subnet.
+- Configure route tables between subnets.
+- Create internet gateways and attach it to your VPC.
+- Much better security control of your AWS resources.
+- Assign SG to each instances.
+- Have Subnet network access control lists
+
+Difference between default VPC and custom VPC.
+- DVPC is user friendly, no networking knowledge needed, allowing to immediately deploy instances.
+- All subnets in default VPC have a route out to the internet.
+- By default, Each EC2 has a public and a private address.
+
+VPC Peering: 
+- Allows you to connect one VPC to another via a direct network route using private IP addresses.
+- Instances behave as if they were on the same private network.
+- You can peer VPC with other AWS accounts as well as other VPC's in the same account.
+- You can peer between regions
+- Peering is a star configuration, ie 1 VPC peers with 4 others. No Transitive Peering.
+
+***Think of VPC as a logical Datacenter in AWS.
+It consists of Internet Gateways(IGW's)/Virtual Private Gateways, Route tables, Network Access control lists, subnets and security groups.
+1subnet can be speard in 1 az only. multiple subnets can be in 1 az. but 1 subnet cant be in multiple az.
+Network ACL's are Stateless, which means you can allow rules and deny rules for ex if we add a inbound rule for a port we will have to add 
+  an outbound rule for that port. in Security groups this is done by default making them stateful.
+In VPC there is no Transitive Peering. Think of it like this:
+      
+          VPC-D
+            ^
+            |
+VPC-A <-> VPC-B <-> VPC-E
+            |
+            ^
+          VPC-C
+Here VPC B is peered with A,C,D,E. But if A wants to communicate with D, It cannot communicate via B. This is called Transitive Peering.
+This is NOT ALLOWED in VPC's. To communicate, We need to connect A and D in a separate connection.
+
