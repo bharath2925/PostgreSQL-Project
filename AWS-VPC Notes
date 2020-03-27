@@ -49,3 +49,50 @@ VPC-A <-> VPC-B <-> VPC-E
 Here VPC B is peered with A,C,D,E. But if A wants to communicate with D, It cannot communicate via B. This is called Transitive Peering.
 This is NOT ALLOWED in VPC's. To communicate, We need to connect A and D in a separate connection.
 
+----VPC Lab Notes----
+Steps while creating a VPC:
+1. Create VPC:
+  Tag is the name of the VPC.
+  IPv4 CIDR Block: is the ipv4 address range to select.This uses CIDR block representation.
+  CIDR: it looks like this: 10.43.0.0/24
+  In an ip address a.b.c.d a,b,c,d are having each memory of 8 bits. so when we say /24. it means that first 3 parts (24/8) of ip, here
+  a,b,c are fixed. and only the last .0 is variable here. making it 2pow(8) = 256 unique ip addresses range.
+  Tenancy: default means all the vpc will be on shared hardware. but dedicated is a separate hardware for your entire VPC(Costly)
+-when we create the vpc, it does not automatically create a subnet but it creates a route table,Network ACL and Security Group
+-So basically the default created VPC would be like this:
+            SG<-NetworkACL<-RouteTable<-Router
+
+-In order to create a VPC, we first need to create a subnet
+2. Create Subnets:
+  Tag is the name give to the vpc. Its good practice to mention the AZ in the tag name of the vpc.
+  **There can be only 1 subnet per 1 az
+  we can mention the ipv4 range we want for this subnet. it should branch from the range provided while creating the vpc.
+  -by default, subnets are No for auto assign publicly accessible IP address. We need to go to actions and enable that.
+    this would give access to internet.
+ -The next step would be to give internet access to our vpc. this is done by creating internet gateways
+3. Create Internet Gateways.
+  We give name to the IGW and once we create it, its detached. we need to attach it to a VPC. 
+  -Remmember we can have only ONE internet gateway per VPC.
+-Once we create the IGW. We need to configure our route tables
+
+4. Configure Route Tables:
+  -We can see our default route table created while creating the VPC, things to note:
+    -The route has the generic ip range provided while creating VPC, this means our subnets can communicate to each other.
+    -This is a security concern as every subnet we create by default is public, to avoid this we usually have main route table 
+     for private subnet and a separate route table for public subnets.
+   -Create Route Table: We give a name and associate the vpc for that route table. 
+    Once the Route table is created. We go to route and edit routes. we add 0.0.0.0/0 and select internet gateway for target.
+    we can see the igw we created in the drop down.
+   -Once the route table is created with igw. we need to associate the public subnet to this route table.
+This completes the VPC set up.Next, we need to setup ec2 instances in our public and private subnets.
+
+The next step is to create EC2 instances. While configuring EC2, we need to select the vpc we created with the public subnet(while creating public ec2)
+Note that SG does not span over vpc. when we create a new vpc we would need to create a new sg or use the default one.
+We shal create 2 ec2 instances one for public and one for private. 
+while creating the ec2 for private. it is necessary to have a custom SG for this ec2. so its better to create a new sg for private subnet ec2's
+
+
+
+
+
+
