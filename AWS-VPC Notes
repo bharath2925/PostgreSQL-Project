@@ -92,6 +92,76 @@ We shal create 2 ec2 instances one for public and one for private.
 while creating the ec2 for private. it is necessary to have a custom SG for this ec2. so its better to create a new sg for private subnet ec2's
 
 
+----NAT instances and gateways---
+NAT instances are Network Address Transalation Ec2 instances which is used to communicate with our private subnet. 
+NAT instances are individual instances that does this job. Gateways are an spread out open gateway spread across multiple az. 
+
+-NAT acts as a gateway to our private subnet through our public subnet connecting to the internet gateway.
+-As in general ec2 needs to either be a source or a destination of a data flow. As NAT acts as gateways, We need to DISABLE 
+  source/destination checks for a NAT instance.
+-We need to create a new route connection so that our NAT instance can talk to the database server(private subnet)
+-We can go to VPC-Route Tables-Select the main route for your vpc(Private subnet) and add a route.
+  select 0.0.0.0/0 and select the NAT instace as type. click ok.
+-We can then ssh into our private instance via our public. and when we run yum updates, we can see the updates happening.
+  the internet is enabled to the private subnet using the NAT instance.
+  
+-In real time, there are 1000's or instances where you would need to run updates, to avoid this instance, we use NAT gateways.
+
+-Create NAT Gateways: First step would be to identify the public subnet and we need to create an Elastic IP address(EIP)
+-Once that is done, we need to go to the route and add a route to this NAT gateway. then we can install updates to our
+  private subnet via Puplic Subnet->NAT gateway
+
+**Remmember for NAT Instances**
+  -While creating NAT instance, Disable source/destination check on the instance.
+  -NAT instance must be on a public subnet.
+  -There must be a route out of the private subnet to the NAT instance.
+  -The amount of traffic a NAT instance can support depends on the instance size. If you are bottlenecking, Increase the size.
+  -They are always behind a SG
+**Remmember for NAT Gateways**
+  - They are redundant to AZ. They do not span across AZ
+  -Prefered by enterprise
+  -starts by 5GBPS and scales upto 45 GBPS
+  -No need to patch
+  -Not associated with SG
+  -Automatically assigned to public IP
+  -Remmember to update your route tables.
+  -If you have resources in multiple AZ and they share the NAT gateway, in the event of NAT gateway's AZ down, resources in other AZ will
+    also loose internet access, 
+  -To create an AZ independent architecture, Create NAT gateways in each AZ and configure your routing to ensure that the resources 
+    use the NAT gateway in the same AZ.
+    
+    
+    
+ -----Network Access Control Lists vs SG-----
+
+- NACL gets created when we create a VPC. The same NACL is used for all subnets by default.
+- By clicking a NACL, we can see the inbound rules. Each rule has a rule #. 
+- Amazon recommends to increase by 100 for each new series of rules. for ex 200,201    300,301 and so on
+-Steps to create a new NACL:
+  1. Name the NACL and select the VPC to associate.
+ Once the NACL is created, we can see that the inbound and outbound rules are all denied. This is by default settings
+ 
+To check this lets create a default webpage in our public ec2. below code to create a index.html:
+
+service httpd status
+yum install httpd -y
+service httpd start
+cd /var/www/html
+nano index.html
+<html><h1>HelloWorld!.From Cloud!!!</h1></html>
+chkconfig httpd on
+
+Once this is done. when we ping the public IP of the webserver, we can see our webpage.
+-We are able to see the webpage because the public subnet is still associated with the default NACL. 
+-to Change NACL, go to VPC-> NACL->select the create NACL->click on subnet associations-> select the public ec2(webserver)->click edit.
+-This will add the newly created NACL to your public subnet.
+
+-Once this is done, you can refresh your public ip adress webpage and realize that it times out. this is because our newly created NACL,
+  does not have any inbound/outbound rules set.
+-to fix this, you need to add rules to your new NACL.
+-to create rule, select inbound rule and add 0.0.0.0/0 to http(80),https(443) and ssh(22) and click add. This will allow these request to your
+  NACL.
+-Outbound rules will not be created after inbound, this needs to be done manually. go to outbound rules and do the same.
 
 
 
