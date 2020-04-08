@@ -1,0 +1,34 @@
+------Load Balancer-----
+There are 3 types:
+1.Application LB: 
+  - Best suited for balancing of HTTP/HTTPS traffic.
+  - They operate at layer 7 and are application aware
+  - They are intelligent, can create advanced routing, sending specified requests to specific web servers.
+2. Network LB:
+  - Best suited for load balancing TCP traffic where extreme performance is required.
+  - Operating at connection level 4(Layer 4), Network LB are capable of handling millions of requests/sec while maintaining low latencies.
+  -Used for extreme performance.
+  -Provides fixed ip address for the load balancer.
+3. Classic LB(ELB):
+  - They are legacy lb. can load balance http/https requests at layer 7 but use specific features like X-Forwarded and sticky sessions.
+  - Can also use strict Layer 4 load balancing for applications that are purely on TCP protocol.
+  - Not that intelligent. Used only if you wanna do basic round robin.
+  - If you app stops responding, ELB will respond with a 504 error.This means the app is having issues, could be at the webserver layer or 
+    database layer.
+  - Identify where the app is failing and scale it up or out where possible.
+  
+X-Forwarded: If you need the Ip address of your end user, look for the x-forwarded-for header
+**Instances monitored by ELB are reported as InService, OutOfService.
+**Health Checks check the instance health by talking to it.
+**Load balancers have their own DNS names. You are never given an IP address.
+**Read the ELB FAQ for classic Load Balancers.
+
+
+----Advanced Load Balancer Theory-----
+Sticky Sessions: 
+Classic load balancers routes each request independently to the registered ec2 instance with the smallest load. Sticky sessions allow you
+to bind a user's session to a specific ec2 instance. This ensures all requests from the user during that session are sent to the same instance.
+
+You can enable Sticky sessions for application load balancers as well, but the traffic will be sent at target group level.
+
+
