@@ -31,4 +31,54 @@ to bind a user's session to a specific ec2 instance. This ensures all requests f
 
 You can enable Sticky sessions for application load balancers as well, but the traffic will be sent at target group level.
 
+Cross Zone Load Balancing:
+This basically allows you to load balalnce on ec2's across az. 
+
+Path Patterns:This will load balance based on the url patterns. For ex: you want to have your webtraffic on on az and the images of that
+  website in another az. enabling path patterns will load balance based on the url
+  
+**---Auto Scaling---(3-4 marks)
+It has 3 components:
+  1. Groups: Its the logical component. ex: webserver group, application group or database group etc.
+  2. Configuration Templates: Each group uses a launch template or a launch config as a configuration template for its ec2 instances.
+    -You can specify information such as the AMI ID, instance type, key pair, sg and block device mapping for your instances.
+  3. Scaling Options: Provides ways to scale the auto scaling groups.
+    -You can configure a group to scale based on the occurance of specified conditions or on a schedule.
+ 
+ Scaling Options:
+ 1. Maintain current instance levels at all times:
+  - Can configure your auto scaling groups to maintain a specified number of running instances at all times.
+  - To maintain current instance levels, Amazon EC2 auto scaling performs a periodic health check on running instances
+    within a auto scaling group.
+  - When amazon ec2 auto scaling finds an unhealthy instance, it terminates that instance and launches a new one.
+  
+ 2. Scale Manually:
+  - Most basic way to scale your resources, where you specify only the change in the maximum, minimum or desired capacity of your 
+    Auto Scaling group.
+  - EC2 Auto scaling manages the process of creating or terminating instances to maintain the updated capacity.
+  
+ 3. Scale based on a schedule:
+  - Scaling actions are performed automatically as a function of time and date.
+  - This is useful when you know exactly when to increase or decrease the no of instances in your group, simply becasue the neww arises
+    on a predictable schedule.
+ 4. Scale based on demand:
+  - Advanced, most used way. Using scaling policies, It lets you  define parameters that control the scaling process.
+  -for ex: if you web app is running on 2 instances and you want the cpu utilization of the auto scaling group to stay around 50%
+   when the load on the app changes. This method is useful for scaling in response to changing conditions, when you dont know these conditions
+   will change.
+   
+ 5. Use Predictive scaling:
+  - Can combine Amazon EC2 Auto scaling with AWS Auto Scaling to scale resources across multiple services.
+  - AWS Auto scaling can help you maintain optimal availability and performance by combining predictive(proactive) scaling and dynamic(reactive)
+  scaling to scale your Amazon EC2 capacity faster.
+
+
+
+
+
+
+
+
+
+
 
