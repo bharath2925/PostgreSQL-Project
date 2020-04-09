@@ -73,9 +73,15 @@ It has 3 components:
   scaling to scale your Amazon EC2 capacity faster.
 
 
-
-
-
+---HA(Highly Available) Architecture---
+Always plan for failure
+-Companies like netflix creates program to inject failure in their process to see how the application handles failures.
+***Always design for failure***
+***Use Multiple AZ and Multiple Regions where ever you can***
+***Know the difference bw Multi-AZ(DR) and Read Replicas(Performance) for RDS***
+***Know the difference bw scaling out(Order Scaling groups and add EC2  ) and scaling up(upgrading the ec2 resources, like more ram etc)***
+***Always consider the cost element***
+***Know the different S3 storage classes***
 
 
 
