@@ -83,8 +83,19 @@ Always plan for failure
 ***Always consider the cost element***
 ***Know the different S3 storage classes***
 
+---CloudFormation----
+- It is a way of completely scripting your cloud env
+- Quick Start is a bunch of CF templates already built by AWS solutions Architects allowing you to create complex environments
+  very quickly.
+  
+---Elastic Beanstalk---
+- You can quickly deploy and manage apps in aws cloud without worrying about the infrastructure that runs those apps.
+- You simply upload your app and elastic beanstalk automatically handles the details of capacity provisioning, load balancing,
+  scaling and app health monitoring.
 
-c
+
+
+
 
 
 
