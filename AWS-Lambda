@@ -1,0 +1,51 @@
+  ---Lambda---
+  It is the ultimate Abstraction Layer.
+  It automatically takes care of scaling, hardware requirements, patch upgrades etc. all we need to provide is the code.
+  
+  Traditional vs Serverless Architecture:
+  Traditional: Everything still needs a dedicated hardware
+    1. User sends request
+    2. Hits route 53->elastic load balancer
+    3.lb connects to webserver
+    4.webserver(ec2) connects to RDS
+    5.sends back response to user.
+  Serverless:no need to worry about scaling etc.
+    1.User sends request
+    2.request hits the api gateway
+    3.API gateway routes to lambda
+    4.lambda can perform functions like write to dynamodB/Aurora etc
+    5.Sends back response
+
+-Languages supported by Lambda - Node.js, Java, Python, c#, Go, PowerShell
+-Lambda Pricing:
+Priced on 2 things:
+  1. Number of Requests: 1st 1 million requests are free, $0.20 per 1 million requests thereafter.
+  2. Duration:Duration is calculated from the time your code begins executing until it returns or otherwise terminates, rounded up to the
+     nearest 100ms.
+     -The pricing depends on the amount of memory you allocate to your function.
+     -You are charged $0.00001667 for every GB-sec used.
+ 
+ Why lambda is best?
+ - No Servers!
+ - Continous Scaling
+ - Super cheap!
+ - Used in Amazon echo.
+ -Remmember Lambda scales out(not up) automatically.(It can run in parallel but not increase its capacity)
+ - Lambda functions are independent, 1 event = 1 function
+ - Lambda is serverless
+ - Lambda functions can trigger other lambda functions.
+ - Lambda can get extremely complicated, AWS X-Ray allows you to debug Lambda functions 
+ - Lambda can do things globally, you can use it to back up s3 buckets to other s3 etc
+ - Remmember what types of triggers are available in lambda 
+ - Remmember what functions can trigger lambda and which cannot!
+ 
+ 
+ 
+----Echo and Alexa----
+
+ 
+ 
+ 
+ 
+ 
+ 
