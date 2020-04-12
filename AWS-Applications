@@ -49,5 +49,151 @@ There are 2 types:
     -FIFO queues also support message groups that allow multiple ordered message groups within a single queue.
     -FIFO queues are limited to 300 tps but have all the capabilities of standard queues.
     
-    
-    
+---Simple Work Flow Service---
+SWF:It is a web service that makes it easy to coordinate work across distributed application components. SWF enables applications
+for a range of use cases, including media processing, web application back-ends, business process workflows and analytics pipelines
+to be designed as a coordination of tasks.
+
+Tasks represent invocations of various processing steps in an application which can be performend by executable code, web service calls,
+ human actions and scripts.
+Its majorly used by amazon in its warehouses.
+
+*SQS has retention period of upto 14 days. with SWF workflow executions can last upto 1 year.
+*SWF presents a task-oriented API, SQS offers a message-oriented API.
+*SWF ensures that a task is assigned only once and is never duplicated. With SQS you need to handle duplicated messages and may
+ also need to ensure that a message is processed only once.
+*SWF keeps track of all the tasks and events in an app. In SQS, you need to implement you own app level tracking, especially if your
+ app uses multiple queues.
+*SWF Actors consists of:
+ 1.Workflow Starters: An app that can initiate a workflow. Could be your website following the placement of order, or a mobile app.
+ 2.Deciders-Control the flow of activity tasks in a workflow execution. If something has finished or failed in workflow a decider 
+   decides what to do next.
+ 3.Activity Workers: Carry out the activity tasks.
+ 
+---SNS(Simple Notification Service)---
+*Instantaneous push based delivery(no polling).
+*Simple API and easy integration with apps.
+*Flexible message delivery over multiple transport protocols.
+*Inexpensive, pay as you go model with no up front costs.
+*Web based AWS management console offers the simplicity of a point-and-click interface.
+
+- Its a webservice that makes it easy to set up, operate and send notifications from the cloud.
+- It provides developers with a highly scalable, flexible and cost effective capability to publish messages from an app and
+  immediately deliver them to subscrubers or other apps.
+- Push notifications to Apple, Google, Fire OS, windows and android devices in china with Baidu cloud push.
+
+-SNS can also deliver notifications by SMS, email to Amazon SQS queues or to any HTTP endpoint.
+-SNS allows you to group multiple recipients using topics.
+-A Topic is an 'Access Point' for allowing receipients to dynamically subscribe for identical copies of the same notification.
+-Once topic can support deliveries to multiple endpoint types. for ex: you can group together iOS, Android and SMS receipients.
+-When you publish once to a topic, SNS delivers appropriately formated copies of your messages to each subscriber.
+-To prevent messages from being lost, all messages are published to amazon SNS are stored redundantly across multiple AZ.
+
+*SNS vs SQS:
+-Both are messaging services in AWS.
+-SNS-Push based
+-SQS-Polls(Pulls)
+
+
+---Elastic Transcoder---
+-Its a media transcoder in the cloud.
+-Convert media files from their original source format into different formats that will play on smartphones, tablets, pc etc.
+-Provides transcoding presets for popular output formats, which means that you dont need to guess about which settings work 
+ best on a particular devices.
+-Pay based on the minutes that you transcode and the resolution at which you transcode.
+
+---API Gateway---
+It is a fully managed service that makes it easy for developers to publish maintain, monitor and secure Api's at any scale. 
+-It exposes HTTPS endpoints to define RESTful API
+-Serverlessly connect to services like lambda and dynamo db.
+-Send each API endpoint to a different target.
+-Run efficiently with low cost.
+-Scale effortlessly
+-Track and control usage by API key.
+-Throttle requests to prevent attacks.
+-Connect to cloudwatch to log all requests for monitoring.
+-Maintain multiple versions of you API.
+
+-Steps to configure an API Gateway.
+ 1.Define an API(container):
+   -Deploy API to stage:Uses API gateway domain by default. 
+   -Can use custom domain
+   -Now supports AWS certificate Manager:free SSL/TLS certificates
+ 2.Define Resources and nested resources(URL Paths)
+ 3.For each resource:
+   1.Select supported HTTP methods(verbs)
+   2.Set security
+   3.Choose targer(EC2, lambda,DynamoDB)
+ 4.Set request and response transformations.
+ 
+**API Gateway Caching:We can enable API caching in Amazon API gateway to cache your endpoint response.
+  -With caching, you can reduce the number of calls made to your endpoint and also imporve the laency of the requests to your API.
+  -when cachning enabled, API gateway caches responses from your endpoint for a specified time-to-live (TTL)period in seconds.
+  -API gateway then responds to the requests by looking up the endpoint response from the cache instead of making a request to 
+   your endpoint.
+ 
+ *Same Origin Policy: In computing, the same-origin policy is an important concept in the web application security model.
+  -A web browser permits scripts contained in a first web page to access data in a second web page, but only if both web pages
+   have the same origin.
+  -This is done to prevent cross-site Scripting(XSS) attacks.
+  -Enforced by web browsers.
+  -Ignored by tools like PostMan and curl
+  
+ *CORS(Cross-origin resource sharing) is a mechanism that allows restricted resources(ex:fonts) on a webpage to be requested
+  from another domain outside the domain from which the first resource was served.
+  -Browser makes a HTTP call for a URL
+  -Server returns a response that says "These other domains are approved to GET this URL"
+  -Error- "Origin policy cannot be read at the remote resource?" It means you need to enable CORS on API gateway.
+  -If using Javascript/AJAX that uses multiple domains with API gateway, ensure that you have enabled CORS on API gateway.
+  -CORS in enforced by client.
+  
+---Kinesis---
+Streaming Data: data that is generated continously by thousands of data sources, which typically send in the data records
+ simultaneously and in small sizes(in kbs)
+ 
+Amazon Kinesis is a platform on AWS to send your streaming data to.Kinesis makes it easy to load and analyze streaming data.
+also providing the ability for you to build your own custom applications for your business needs.
+
+There are 3 types of Kinesis:
+ 1.Kinesis Streams:It basically stores the streaming data from your devices in shards.
+  -one Shards consists of 5 tps for reads and upto a max total data read rate of 2 MBpsand upto 1000 rec/sec for writes and upto
+   max total data write rate of 1 MBps.
+  -The data capacity of your stream is a function of the number of shards that you specify for the stream. The total capacity of
+   the stream is the sum of capacities of its shards
+  -The retention period of data in shards is fro 24hrs-7days, having data persistance.
+ 2.Kinesis Firehose:Here the streaming data is sent to the Kinesis firehose where we can call the lambda functions to preprocess
+  the data and send it to S3. the data is not stored so no persistance.
+ 3.Kinesis Analytics: It analyses data with in streams or firehouse
+ 
+---Web Identity Federation and Cognito---
+WIF lets you give your users access to AWS resources after they have successfully authenticated with a web-based identity provider
+like Amazon, Facebook or google.
+Following successful authentication, the user receives an authentication code from the Web ID provided, which they can trade for 
+temporary AWS security creds.
+
+Amazon Cognito provides you WIF with following features:
+-Sign up and sign in to your apps
+-Access for guest users
+-Acts as an Identity broker bw your app and web ID providers. so you dont need to write any additional code for this.
+-Syncs user data for multiple devices.
+-Recommended for all mobile apps aws services.
+
+User pools:User directories used to manage sign-up and sing-in functionality for mobile and web apps.
+Users can sign-in directly to the user pool or using fb,amazon or google.
+-Cognito acts as an identity broker bw the identity provider and aws.
+-successful authentication generates a JSON web tokens(JWTs)
+
+Identity Pools: They enable to provide temp aws creds to access aws services like s3,dynamo etc
+
+How it works: 
+-The user gives her fb creds to login to the user pool. Userpool will generate a JWT to the user.
+-The user can then use the JWT to access her AWS creds from Identity pool.
+-The AWS creds are assigned to an IAM role you specify and will have access as per the IAM role.
+
+Cognito Sync: Cognito tracks the association bw user identity and the various different devices they sign-in from.
+-In order to provide a seamless user experience, Cognito uses PUSH sync to push updates and sync the user data across multiple devices.
+-Cognito uses SNS to send notification to all the devices associated with a given user identity whenever data stored in the cloud changes.
+
+  
+  
+  
